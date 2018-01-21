@@ -38,12 +38,11 @@ def main():
     if len(sys.argv) == 3:
         url = sys.argv[1]
         ext = sys.argv[2]
-        print("url:%s ext:%s" % (url, ext))
+        #print("url:%s ext:%s" % (url, ext))
         k = imdb2filename(url, ext)
         fn = k.make_file_name()
         print("Plex recommended file name:\n%s" % fn)
     else:
-        print(len(sys.argv))
         print("Usage:\n\t%s URL extension" % (sys.argv[0]))
     
 
