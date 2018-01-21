@@ -8,7 +8,7 @@ import sys
 class imdb2filename:
     def __init__(self, url, ext):
         self.url = url
-        self.ext = ext if ext is not None else ''
+        self.ext = (".%s" % (ext)) if ext is not None else ''
 
     def fetch_and_parse(self):
         req = urllib.request.Request(self.url)
@@ -31,13 +31,13 @@ class imdb2filename:
     def make_file_name(self):
         self.fetch_and_parse()
         title = self.original_title if self.original_title is not None else self.title 
-        fn = '"%s (%s).%s"' % (title, self.year, self.ext) 
+        fn = '"%s (%s)%s"' % (title, self.year, self.ext) 
         return fn
 
 def main():
-    if len(sys.argv) == 3:
+    if len(sys.argv) >= 2:
         url = sys.argv[1]
-        ext = sys.argv[2]
+        ext = sys.argv[2] if len(sys.argv) > 2 else None
         #print("url:%s ext:%s" % (url, ext))
         k = imdb2filename(url, ext)
         fn = k.make_file_name()
